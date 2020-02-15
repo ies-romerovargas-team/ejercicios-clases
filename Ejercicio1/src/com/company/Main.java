@@ -9,82 +9,127 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Baraja baraja = new Baraja(1);
-        //PintaBaraja(baraja);
         baraja.barajar();
-        //PintaBaraja(baraja);
-        // Jugamos a las 7 y media
         List<Carta> CartasJugador = new ArrayList<>();
         List<Carta> CartasOrdenador = new ArrayList<>();
         String opcion = "s";
-        double puntuacion = 0;
-        while (opcion!="n")
+        double punt1 = 0, punt2 = 0;
+        while (!opcion.equals("n"))
         {
+            punt1 = 0;
             CartasJugador.add(baraja.robar());
-            PintaCartas(CartasJugador);
-            double cont = 0;
+            PintaMesa(CartasJugador, CartasOrdenador);
             for (int i = 0; i < CartasJugador.size(); i++) {
-                cont = cont + CartasJugador.get(i).valor7yMedia();
+                punt1 = punt1 + CartasJugador.get(i).valor7yMedia();
             }
-            System.out.println("Valor total: " + cont);
-            if(cont < 7.5) {
+            if(punt1 < 7.5) {
                 System.out.println("¿quiere más cartas? (s/n)");
                 opcion = sc.nextLine();
             }
             else
             {
-                System.out.println("TE PASASTE!!");
                 break;
             }
-            puntuacion = cont;
         }
-        boolean excedido = false;
-        while(!excedido)
+        boolean continua = true;
+        while(continua)
         {
+            punt2 = 0;
             CartasOrdenador.add(baraja.robar());
-            PintaCartas(CartasOrdenador);
-            double cont = 0;
+            PintaMesa(CartasJugador, CartasOrdenador);
             for (int i = 0; i < CartasOrdenador.size(); i++) {
-                cont = cont + CartasOrdenador.get(i).valor7yMedia();
+                punt2 = punt2 + CartasOrdenador.get(i).valor7yMedia();
             }
-            System.out.println("Valor total: " + cont);
-            if(cont < 7.5) {
-
-            } else {
-                System.out.println("HAS GANADO");
-                excedido = true;
+            if(punt2 < 7.5)
+            {
+                if(punt2 <= punt1 && punt1 <= 7.5)
+                {
+                    System.out.println("                                             Pidiendo otra carta...");
+                    retardo();
+                }
+                else
+                {
+                    System.out.println("                                             Me planto");
+                    continua = false;
+                }
             }
-            if(cont>= puntuacion) {
-                System.out.println("HAS PERDIDO");
-                break;
+            if (punt2 == 7.5)
+            {
+                System.out.println("                                             Tengo 7 y media");
+                continua = false;
             }
+            if (punt2 > 7.5)
+            {
+                System.out.println("                                             Me he pasado");
+                continua = false;
+            }
+        }
+        if((punt1 >= punt2 && punt1 < 7.5) || punt2 > 7.5)
+        {
+            System.out.println("HAS GANADO");
+        }
+        else
+        {
+            System.out.println("HAS PERDIDO");
         }
     }
 
-    private static void PintaCartas(List<Carta> cartasJugador)
+    private static void retardo()
     {
+        try {
+            Thread.sleep(3000);
+        }
+        catch (InterruptedException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+    private static void PintaMesa(List<Carta> cartasJuego1, List<Carta> cartasJuego2)
+    {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
         String ANSI_RED="\u001B[31m";
         String ANSI_RESET="\u001B[0m";
+        String ANSI_YELLOW_BACKGROUND = "\u001B[103m";
         String[] poker = {"♦", "♥", "♠", "♣"};
-        for (int i = 0; i < cartasJugador.size(); i++) {
-            System.out.print(cartasJugador.get(i).nombreNumero());
-            if(cartasJugador.get(i).palo<2) System.out.print(ANSI_RED);
-            System.out.print(poker[cartasJugador.get(i).palo] + " ");
+        System.out.println("JUGADOR:                                     ORDENADOR:");
+        int i, j;
+        for (i = 0; i < cartasJuego1.size(); i++) {
+            System.out.print(ANSI_YELLOW_BACKGROUND);
+            System.out.print(cartasJuego1.get(i).nombreNumero());
+            if(cartasJuego1.get(i).palo<2) System.out.print(ANSI_RED);
+            System.out.print(poker[cartasJuego1.get(i).palo]);
             System.out.print(ANSI_RESET);
+            System.out.print("  ");
+        }
+        //
+        for (j = i * 4; j < 45; j++) System.out.print(" ");
+        //
+        for (i = 0; i < cartasJuego2.size(); i++) {
+            System.out.print(ANSI_YELLOW_BACKGROUND);
+            System.out.print(cartasJuego2.get(i).nombreNumero());
+            if(cartasJuego2.get(i).palo<2) System.out.print(ANSI_RED);
+            System.out.print(poker[cartasJuego2.get(i).palo]);
+            System.out.print(ANSI_RESET);
+            System.out.print("  ");
         }
         System.out.println();
-    }
-
-    private static void PintaBaraja(Baraja li)
-    {
-        // Escribir toda la baraja
-        int i;
-        System.out.println("Baraja: ");
-        if(li.numeroCartas() > 0) {
-            for (i = 0; i < li.numeroCartas(); i++) {
-                Carta a = li.leeBaraja(i);
-                System.out.println(a.numero + " de " + a.nombrePalo());
-            }
+        //
+        double punt1 = 0, punt2 = 0;
+        for (i = 0; i < cartasJuego1.size(); i++) {
+            punt1 = punt1 + cartasJuego1.get(i).valor7yMedia();
         }
-
+        for (i = 0; i < cartasJuego2.size(); i++) {
+            punt2 = punt2 + cartasJuego2.get(i).valor7yMedia();
+        }
+        String puntuacion = "Puntos: " + punt1;
+        if(punt1 > 7.5) System.out.print(ANSI_RED);
+        System.out.print(puntuacion);
+        System.out.print(ANSI_RESET);
+        //
+        for (j = puntuacion.length(); j < 45; j++) System.out.print(" ");
+        //
+        System.out.println("Puntos: " + punt2);
     }
 }
