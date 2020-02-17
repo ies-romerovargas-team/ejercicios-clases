@@ -1,9 +1,6 @@
 package com.company;
 
 public class Alumno {
-    /*public String nombre;
-    public int edad;
-    public double calificacion;*/
 
     //Atributos
     String nombre;
@@ -11,16 +8,16 @@ public class Alumno {
     double calificacion;
 
     //Constructor
-    public Alumno(Alumno alumno){
+    public Alumno(){
         setNombre(this.nombre);
         setEdad(this.edad);
         setCalificacion(this.calificacion);
     }
 
     //Propiedades
-    public String getNombre(){return this.nombre}
-    public int getEdad(){return this.edad}
-    public double getCalificacion() {return this.calificacion}
+    public String getNombre(){return this.nombre;}
+    public int getEdad(){return this.edad;}
+    public double getCalificacion() {return this.calificacion;}
 
     //Metodos
     public void setNombre(String a)
