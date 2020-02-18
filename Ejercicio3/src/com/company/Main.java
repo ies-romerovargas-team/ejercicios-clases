@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
         Random r = new Random();
-        String[] menu = {"jugador vs jugador", "jugador vs ordenador", "ordenador vs jugador", "ordenador vs ordenador"};
+        String[] menu = {"jugador vs jugador", "jugador vs ordenador", "ordenador vs jugador", "ordenador vs ordenador", "nivel (0-1-2-3)"};
         Scanner sc = new Scanner(System.in);
         boolean salir = false;
         int opcion;
@@ -24,6 +24,7 @@ public class Main {
                 opcion = sc.nextInt();
                 sc.nextLine(); // buffer
                 boolean turno;
+                String mensaje="";
                 switch (opcion) {
                     case 1:
                         juego.iniciar();
@@ -34,7 +35,6 @@ public class Main {
                         {
                             if(turno){
                                 if(juego.ganaJugador2()) {
-                                    System.out.println("Gana Jugador 2 (O)");
                                     break;
                                 } else
                                     {
@@ -55,7 +55,6 @@ public class Main {
                             }
                             else {
                                 if(juego.ganaJugador1()) {
-                                    System.out.println("Gana Jugador 1 (X)");
                                     break;
                                 } else
                                 {
@@ -75,7 +74,13 @@ public class Main {
                                 }
                             }
                         }
-                        System.out.println("No hay más movimientos");
+                        if(juego.ganaJugador1()) mensaje = "Gana J1 (X)";
+                        if(juego.ganaJugador2()) mensaje = "Gana J2 (O)";
+                        if(mensaje.equals(""))
+                        {
+                            System.out.println("No hay más movimientos");
+                        }
+                        else System.out.println(mensaje);
                         break;
                     case 2:
                         juego.iniciar();
@@ -88,7 +93,6 @@ public class Main {
                             {
                                 if(juego.ganaJugador2())
                                 {
-                                    System.out.println("Gana Ordenador (O)");
                                     break;
                                 }
                                 else
@@ -112,7 +116,6 @@ public class Main {
                             {
                                 if(juego.ganaJugador1())
                                 {
-                                    System.out.println("Gana Jugador 1 (X)");
                                     break;
                                 }
                                 else
@@ -123,7 +126,13 @@ public class Main {
                                 }
                             }
                         }
-                        System.out.println("No hay más movimientos");
+                        if(juego.ganaJugador1()) mensaje = "Gana J1 (X)";
+                        if(juego.ganaJugador2()) mensaje = "Gana J2 (O)";
+                        if(mensaje.equals(""))
+                        {
+                            System.out.println("No hay más movimientos");
+                        }
+                        else System.out.println(mensaje);
                         break;
                     case 3:
                         juego.iniciar();
@@ -134,7 +143,6 @@ public class Main {
                         {
                             if(turno){
                                 if(juego.ganaJugador2()) {
-                                    System.out.println("Gana Ordenador (O)");
                                     break;
                                 } else
                                 {
@@ -145,7 +153,6 @@ public class Main {
                             }
                             else {
                                 if(juego.ganaJugador1()) {
-                                    System.out.println("Gana Jugador 1 (X)");
                                     break;
                                 } else
                                 {
@@ -165,7 +172,13 @@ public class Main {
                                 }
                             }
                         }
-                        System.out.println("No hay más movimientos");
+                        if(juego.ganaJugador1()) mensaje = "Gana J1 (X)";
+                        if(juego.ganaJugador2()) mensaje = "Gana J2 (O)";
+                        if(mensaje.equals(""))
+                        {
+                            System.out.println("No hay más movimientos");
+                        }
+                        else System.out.println(mensaje);
                         break;
                     case 4:
                         juego.iniciar();
@@ -176,7 +189,6 @@ public class Main {
                         {
                             if(turno){
                                 if(juego.ganaJugador2()) {
-                                    System.out.println("Gana Ordenador (O)");
                                     break;
                                 } else
                                 {
@@ -187,7 +199,6 @@ public class Main {
                             }
                             else {
                                 if(juego.ganaJugador1()) {
-                                    System.out.println("Gana Ordenador (X)");
                                     break;
                                 } else
                                 {
@@ -201,11 +212,27 @@ public class Main {
                                 Thread.sleep(1000);
                             }catch(InterruptedException e){}
                         }
-                        System.out.println("No hay más movimientos");
+                        if(juego.ganaJugador1()) mensaje = "Gana J1 (X)";
+                        if(juego.ganaJugador2()) mensaje = "Gana J2 (O)";
+                        if(mensaje.equals(""))
+                        {
+                            System.out.println("No hay más movimientos");
+                        }
+                        else System.out.println(mensaje);
+                        break;
+                    case 5:
+                        System.out.println("Nivel actual: " + juego.nivel);
+                        System.out.print("Introduzca nuevo nivel (0/3): ");
+                        int y = sc.nextInt();
+                        juego.setNivel(y);
+                        juego.nivel = y;
+                        break;
+                    case 0:
+                        salir=true;
                         break;
                 }
             } catch (Exception a) {
-
+                System.out.println(a.getMessage());
             }
         }
     }
