@@ -23,7 +23,7 @@ public class Main {
                 punt1 = punt1 + CartasJugador.get(i).valor7yMedia();
             }
             if(punt1 < 7.5) {
-                System.out.println("¿quiere más cartas? (s/n)");
+                System.out.println("¿quieres otra cartas? (s/n)");
                 opcion = sc.nextLine();
             }
             else

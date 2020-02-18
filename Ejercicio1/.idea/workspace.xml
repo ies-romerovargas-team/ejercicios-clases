@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="22da8900-2bf5-468e-ad4d-563f924e8d0e" name="Default Changelist" comment="Finalizado primera versión 7 y media">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Ejercicio1/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ejercicio1/com/company/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+=======
+    <list default="true" id="22da8900-2bf5-468e-ad4d-563f924e8d0e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ejercicio2/src/com/company/Alumno.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ejercicio2/src/com/company/Alumno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ejercicio2/src/com/company/Grupo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ejercicio2/src/com/company/Grupo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ejercicio2/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Ejercicio2/src/com/company/Main.java" afterDir="false" />
+>>>>>>> 367ed66533c8eb546809e5bffaa792f8dda0f38a
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +37,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ejercicios-ficheros/ejercicios3" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunManager">
@@ -81,11 +91,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="551" y="118" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1581801371364" />
-    <state x="740" y="277" key="FileChooserDialogImpl" timestamp="1581794740438">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="549" y="205" width="428" height="513" key="FileChooserDialogImpl" timestamp="1581880965096">
+      <screen x="36" y="0" width="1330" height="768" />
     </state>
     <state x="740" y="277" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581794740438" />
+<<<<<<< HEAD
     <state width="1877" height="254" key="GridCell.Tab.0.bottom" timestamp="1581801516520">
+=======
+    <state x="549" y="205" width="428" height="513" key="FileChooserDialogImpl/36.0.1330.768@36.0.1330.768" timestamp="1581880965096" />
+    <state width="1877" height="254" key="GridCell.Tab.0.bottom" timestamp="1581801326520">
+>>>>>>> 367ed66533c8eb546809e5bffaa792f8dda0f38a
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="254" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1581801516520" />
@@ -121,5 +136,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="463" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581794158741" />
+    <state x="89" y="0" width="1243" height="768" key="new project wizard" timestamp="1581880827728">
+      <screen x="36" y="0" width="1330" height="768" />
+    </state>
+    <state x="89" y="0" width="1243" height="768" key="new project wizard/36.0.1330.768@36.0.1330.768" timestamp="1581880827728" />
   </component>
 </project>
