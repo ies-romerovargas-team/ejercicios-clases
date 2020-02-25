@@ -228,13 +228,13 @@ public class TresEnRaya {
         for (int i = 0; i < 30; i++) {
             System.out.println();
         }
-        System.out.println("   0   1   2");
-        System.out.println("  ╔═══╤═══╤═══╗");
+        System.out.println("    0   1   2");
+        System.out.println("  ╔═══╦═══╦═══╗");
         System.out.println(0 + " ║" + texto[tablero[0][0]] + "│" + texto[tablero[0][1]] + "│" + texto[tablero[0][2]] + "║");
-        System.out.println("  ╟───┼───┼───╢");
+        System.out.println("  ╠───┼───┼───╣");
         System.out.println(1 + " ║" + texto[tablero[1][0]] + "│" + texto[tablero[1][1]] + "│" + texto[tablero[1][2]] + "║");
-        System.out.println("  ╟───┼───┼───╢");
+        System.out.println("  ╠───┼───┼───╣");
         System.out.println(2 + " ║" + texto[tablero[2][0]] + "│" + texto[tablero[2][1]] + "│" + texto[tablero[2][2]] + "║");
-        System.out.println("  ╚═══╧═══╧═══╝");
+        System.out.println("  ╚═══╩═══╩═══╝");
     }
 }

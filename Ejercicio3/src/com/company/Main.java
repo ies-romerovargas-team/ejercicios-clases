@@ -15,10 +15,12 @@ public class Main {
         String[] menu = {"jugador vs jugador", "jugador vs ordenador", "ordenador vs jugador", "ordenador vs ordenador", "nivel (0-1-2-3)"};
         Scanner sc = new Scanner(System.in);
         boolean salir = false;
+        int nivel = 0;
         int opcion;
         while (!salir) {// write your code here
             imprimeMenu(menu, "Menu principal", ANSI_BLUE);
             TresEnRaya juego = new TresEnRaya();
+            juego.nivel = nivel;
             try {
                 System.out.print("Eliga opción: ");
                 opcion = sc.nextInt();
@@ -223,9 +225,8 @@ public class Main {
                     case 5:
                         System.out.println("Nivel actual: " + juego.nivel);
                         System.out.print("Introduzca nuevo nivel (0/3): ");
-                        int y = sc.nextInt();
-                        juego.setNivel(y);
-                        juego.nivel = y;
+                        nivel = sc.nextInt();
+                        juego.setNivel(nivel);
                         break;
                     case 0:
                         salir=true;
