@@ -17,7 +17,7 @@ public class Main {
         boolean salir = false;
         int nivel = 0;
         int opcion;
-        while (!salir) {// write your code here
+        while (!salir) {
             imprimeMenu(menu, "Menu principal", ANSI_BLUE);
             TresEnRaya juego = new TresEnRaya();
             juego.nivel = nivel;
