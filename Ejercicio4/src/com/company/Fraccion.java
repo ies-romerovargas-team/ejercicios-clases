@@ -8,6 +8,8 @@ public class Fraccion {
     int denominador;
 
     //Constructores
+    public Fraccion(){}
+
     public Fraccion(int n, int d)
     {
         if(d==0) {
@@ -94,12 +96,18 @@ public class Fraccion {
     public Fraccion simplifica(Fraccion f)
     {
         int comun = mcd(f.numerador, f.denominador);
-        return new Fraccion(this.numerador/comun, this.denominador/comun);
+        return new Fraccion(f.numerador/comun, f.denominador/comun);
     }
 
     public String toString()
     {
-        return this.numerador + "/" + this.denominador;
+        if(this.denominador==1)
+        {
+            return this.numerador + "";
+        }
+        else {
+            return this.numerador + "/" + this.denominador;
+        }
     }
 
     public void negate()
@@ -132,21 +140,23 @@ public class Fraccion {
     {
         int sup = this.numerador * f.denominador;
         int inf = this.denominador * f.numerador;
-        return simplifica(new Fraccion(sup,inf));
+        return simplifica(new Fraccion(sup, inf));
     }
 
     public boolean equals(Fraccion f)
     {
-        return simplifica(this)==simplifica(f);
+        Fraccion f1 = new Fraccion();
+        f1 = this;
+        return simplifica(f1)==simplifica(f);
     }
 
     public int compareTo(Fraccion f)
     {
         if(equals(f)) return 0;
-        if(f.numerador/f.denominador>this.numerador/this.denominador)
+        if(f.numerador/f.denominador > this.numerador/this.denominador)
         {
-            return -1;
+            return 1;
         }
-        return 1;
+        return -1;
     }
 }
