@@ -121,24 +121,23 @@ public class Main {
                     case 7:
                         System.out.println("equals(f)");
                         System.out.print("Introduzca numerador: ");
-                        n = sc.nextInt();
+                        int n1 = sc.nextInt();
                         System.out.print("Introduzca denominador: ");
-                        d = sc.nextInt();
-                        f = new Fraccion(n, d);
+                        int d1 = sc.nextInt();
+                        f = new Fraccion(n1, d1);
                         System.out.println("Segunda Fracción");
                         System.out.print("Introduzca numerador: ");
-                        n = sc.nextInt();
+                        int n2 = sc.nextInt();
                         System.out.print("Introduzca denominador: ");
-                        d = sc.nextInt();
-                        Fraccion f6 = new Fraccion(n, d);
+                        int d2 = sc.nextInt();
+                        Fraccion f6 = new Fraccion(n2, d2);
                         if(f.equals(f6)){
-                            System.out.println(f.toString() +" y " + f6.toString() + " son iguales");
+                            System.out.println(n1 +"/" + d1 + " y " + n2 + "/" + d2 + " son iguales");
                         }
                         else
                         {
-                            System.out.println(f.toString() +" y " + f6.toString() + " son distintas");
+                            System.out.println(n1 +"/" + d1 + " y " + n2 + "/" + d2 + " son distintas");
                         }
-
                         break;
                     case 8:
                         System.out.println("compareTo(f)");
@@ -158,16 +157,18 @@ public class Main {
                         }
                         else if(f.compareTo(f7) == 1)
                         {
-                            System.out.println(f.toString() +" es mayor que " + f7.toString());
+                            System.out.println(f.toString() +" es menor que " + f7.toString());
                         }
                         else
                         {
-                            System.out.println(f.toString() +" es menor que " + f7.toString());
+                            System.out.println(f.toString() +" es mayor que " + f7.toString());
                         }
                         break;
                     case 0:
                         salir = true;
                         break;
+                    default:
+                        System.out.println("Opción no válida");
                 }
             }
             catch (Exception e)

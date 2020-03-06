@@ -145,15 +145,18 @@ public class Fraccion {
 
     public boolean equals(Fraccion f)
     {
-        Fraccion f1 = new Fraccion();
-        f1 = this;
-        return simplifica(f1)==simplifica(f);
+        simplificar(); // simplifica this
+        Fraccion a = new Fraccion();
+        a = simplifica(f);
+        return this.numerador == a.numerador && this.denominador == a.denominador;
     }
 
     public int compareTo(Fraccion f)
     {
         if(equals(f)) return 0;
-        if(f.numerador/f.denominador > this.numerador/this.denominador)
+        double f1 = f.numerador * 1.0 / f.denominador;
+        double f2 = this.numerador * 1.0 / this.denominador;
+        if(f1 > f2)
         {
             return 1;
         }
