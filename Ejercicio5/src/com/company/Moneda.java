@@ -1,13 +1,14 @@
 package com.company;
 
 public class Moneda {
+
     //Atributos
-    Dinero tMoneda = new Dinero();
+    TipoMoneda tMoneda;
     int decimales;
     String simbolo;
     double cambioEuro;
 
-    public Moneda(Dinero din, int numDec, String symb, double valor)
+    public Moneda(TipoMoneda din, int numDec, String symb, double valor)
     {
         boolean error = false;
         if(numDec<0 || numDec>4) error = true;
@@ -25,7 +26,7 @@ public class Moneda {
         }
     }
 
-    public Dinero gettMoneda() {
+    public TipoMoneda gettMoneda() {
         return tMoneda;
     }
 
