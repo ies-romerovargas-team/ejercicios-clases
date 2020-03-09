@@ -7,8 +7,9 @@ public class Moneda {
     int decimales;
     String simbolo;
     double cambioEuro;
+    String codigo;
 
-    public Moneda(TipoMoneda din, int numDec, String symb, double valor)
+    public Moneda(TipoMoneda din, int numDec, String symb, double valor, String codigo)
     {
         boolean error = false;
         if(numDec<0 || numDec>4) error = true;
@@ -19,6 +20,7 @@ public class Moneda {
             this.decimales = numDec;
             this.simbolo = symb;
             this.cambioEuro = valor;
+            this.codigo = codigo;
         }
         else
         {
@@ -45,7 +47,5 @@ public class Moneda {
     public void setCambioEuro(double cambioEuro) {
         if(cambioEuro > 0) this.cambioEuro = cambioEuro;
     }
-
-
 
 }
