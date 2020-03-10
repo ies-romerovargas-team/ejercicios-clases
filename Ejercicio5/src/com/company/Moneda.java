@@ -3,18 +3,18 @@ package com.company;
 public class Moneda {
 
     //Atributos
-    TipoMoneda tMoneda;
-    int decimales;
-    String simbolo;
-    double cambioEuro;
-    String codigo;
+    private TipoMoneda tMoneda;
+    private int decimales;
+    private String simbolo;
+    private double cambioEuro;
+    private String codigo;
 
     public Moneda(TipoMoneda din, int numDec, String symb, double valor, String codigo)
     {
         boolean error = false;
-        if(numDec<0 || numDec>4) error = true;
+        if(numDec < 0 || numDec > 4) error = true;
         if(symb.equals("")) error = true;
-        if(valor<0) error = true;
+        if(valor < 0) error = true;
         if(!error) {
             this.tMoneda = din;
             this.decimales = numDec;
@@ -32,13 +32,15 @@ public class Moneda {
         return tMoneda;
     }
 
-    public double getdecimales() {
+    public int getdecimales() {
         return decimales;
     }
 
     public String getSimbolo() {
         return simbolo;
     }
+
+    public String getCodigo() { return codigo; }
 
     public double getCambioEuro() {
         return cambioEuro;
