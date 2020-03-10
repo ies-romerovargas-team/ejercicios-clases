@@ -1,8 +1,6 @@
 package com.company;
 
-
-import jdk.swing.interop.SwingInterOpUtils;
-
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -29,9 +27,9 @@ public class Main {
                 moneda = TipoMoneda.YEN;
                 break;
         }
-        System.out.print("Redondeo: ");
         Dinero myMoney = new Dinero(cantidad, moneda);
         System.out.println(myMoney.toString());
+        System.out.println();
         System.out.print("Valor en EUROS: ");
         System.out.println(myMoney.valorEn(TipoMoneda.EURO));
         System.out.print("Valor en DOLARES: ");
@@ -42,14 +40,10 @@ public class Main {
         System.out.println(myMoney.valorEn(TipoMoneda.YEN));
         System.out.println();
         System.out.println("Convertir");
-        Dinero euros = new Dinero(0, TipoMoneda.EURO);
-        Dinero dolares = new Dinero(0, TipoMoneda.DOLAR);
-        Dinero libras = new Dinero(0, TipoMoneda.LIBRA);
-        Dinero yenes = new Dinero(0, TipoMoneda.YEN);
-        euros = myMoney.convierteEn(TipoMoneda.EURO);
-        dolares = myMoney.convierteEn(TipoMoneda.DOLAR);
-        libras = myMoney.convierteEn(TipoMoneda.LIBRA);
-        yenes = myMoney.convierteEn(TipoMoneda.YEN);
+        Dinero euros = myMoney.convierteEn(TipoMoneda.EURO);
+        Dinero dolares = myMoney.convierteEn(TipoMoneda.DOLAR);
+        Dinero libras = myMoney.convierteEn(TipoMoneda.LIBRA);
+        Dinero yenes = myMoney.convierteEn(TipoMoneda.YEN);
         System.out.println(euros.toString());
         System.out.println(dolares.toString());
         System.out.println(libras.toString());
@@ -63,5 +57,8 @@ public class Main {
         System.out.println(myMoney.toString(TipoMoneda.LIBRA));
         System.out.println("toString(YEN)");
         System.out.println(myMoney.toString(TipoMoneda.YEN));
+        System.out.println();
+        System.out.println("Conversiones al resto de monedas:");
+        System.out.println(myMoney.toRate());
     }
 }
