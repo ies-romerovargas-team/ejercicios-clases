@@ -73,8 +73,7 @@ public class CineDB {
             String sql = "SELECT * FROM actoresPeliculas WHERE idActor ="+ idActor + " AND idPelicula = " + idPelicula + ";";
             ResultSet rs = st.executeQuery(sql);
             if (!rs.next()) {
-                sql = "INSERT INTO actoresPeliculas" +
-                        "VALUES (" + idActor + ", " + idPelicula + ", " + principal + ")";
+                sql = "INSERT INTO actoresPeliculas" + " VALUES (" + idActor + ", " + idPelicula + ", " + principal + ")";
                 st.execute(sql);
             }
             else
@@ -234,7 +233,7 @@ public class CineDB {
             List<Pelicula> listFilms = new ArrayList<>();
             while (rs.next())
             {
-                listFilms.add(datosPelicula(rs.getInt("id")));
+                listFilms.add(datosPelicula(rs.getInt("idPelicula")));
             }
             return listFilms;
         }
@@ -254,9 +253,9 @@ public class CineDB {
             ResultSet rs = st.executeQuery(sql);
             Actor start = new Actor();
             List<ActorPelicula> listStart = new ArrayList<>();
-            ActorPelicula a = new ActorPelicula();
             while (rs.next())
             {
+                ActorPelicula a = new ActorPelicula();
                 start = datosActor(rs.getInt("idActor"));
                 a.id = start.id ;
                 a.fechaNacimiento = start.fechaNacimiento;
