@@ -1,8 +1,12 @@
 package com.company;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,17 +17,31 @@ public class ServidorBonoloto
 
     static void lanzaServidor()
     {
-        // abriremos  un ServerSocket en el  puerto  9009
+        ServerSocket servidor = null;
+        DataInputStream in;
+        DataOutputStream out;
         try
         {
-            ServerSocket server = new ServerSocket(9009);
-            ExecutorService pool = Executors.newFixedThreadPool(20);
-
+            servidor = new ServerSocket(9009);
+            System.out.println("Servidor iniciado");
             while(true)
             {
-                Socket soc = server.accept();
-                pool.execute(new subProceso(soc));
-                System.out.println("Conectado: " + soc);
+                Socket soc = servidor.accept();
+                System.out.println("Cliente in");
+
+                in = new DataInputStream(soc.getInputStream());
+                out = new DataOutputStream(soc.getOutputStream());
+
+                String mensajeRecibido = in.readUTF();
+                if(mensajeRecibido.equals("Init"))
+                {
+                    System.out.println(mensajeRecibido);
+                    out.writeUTF("La combinacion ganadora es...");
+                }
+
+                soc.close();
+                System.out.println("Cliente out");
+
             }
         }
         catch(Exception e)
@@ -32,31 +50,23 @@ public class ServidorBonoloto
         }
     }
 
-    public static class subProceso implements Runnable
+    public static List<Integer> sorteoBonoloto()
     {
-        private Socket soc;
+        Random r = new Random();
 
-        public subProceso(Socket soc)
-        {
-            this.soc = soc;
+        //Creamos lista con 49 números
+        ArrayList<Integer> bombo = new ArrayList<Integer>();
+        for (int i = 1; i < 50; i++) {
+            bombo.add(i);
         }
-
-        public void run()
-        {
-            try
-            {
-                PrintWriter pw = new PrintWriter(soc.getOutputStream(), true);
-
-                for (int i = 1; i < 1000; i++)
-                {
-                    pw.println(i);
-                    Thread.sleep(1000);
-                }
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+        //Creamos lista vacia
+        ArrayList<Integer> combinacion = new ArrayList<Integer>();
+        for (int j = 0; j < 6; j++) {
+            int max = 49 - j;
+            int aleatorio = r.nextInt(max);
+            combinacion.add(bombo.get(aleatorio));
+            bombo.remove(aleatorio);
         }
+        return combinacion;
     }
 }
