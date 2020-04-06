@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ClienteBonoloto
@@ -19,6 +21,7 @@ public class ClienteBonoloto
     {
         DataInputStream in;
         DataOutputStream out;
+        List<Integer> lista = new ArrayList<>();
         try
         {
             Socket soc = new Socket(ip, 9009);
@@ -28,13 +31,30 @@ public class ClienteBonoloto
 
             out.writeUTF("Init");
 
-            System.out.println(in.readUTF());
+            String respuesta = in.readUTF();
+            System.out.println(respuesta);
+            if(respuesta.equals("Send")) {
+
+                for (int i = 0; i < 6; i++) {
+                    int num = in.readInt();
+                    System.out.println(num);
+                    lista.add(num);
+                }
+            }
             soc.close();
         }
         catch(Exception e)
         {
             e.printStackTrace();
         }
-        return 1;
+        // Comprobando resultados
+        int cont = 0;
+        for (int i = 0; i < boleto.length; i++) {
+            if(lista.contains(boleto[i]))
+            {
+                cont++;
+            }
+        }
+        return cont;
     }
 }

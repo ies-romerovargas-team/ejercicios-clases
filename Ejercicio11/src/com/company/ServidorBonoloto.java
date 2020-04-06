@@ -2,14 +2,12 @@ package com.company;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
 
 public class ServidorBonoloto
 {
@@ -35,13 +33,17 @@ public class ServidorBonoloto
                 String mensajeRecibido = in.readUTF();
                 if(mensajeRecibido.equals("Init"))
                 {
+                    List<Integer> sorteo = sorteoBonoloto();
                     System.out.println(mensajeRecibido);
-                    out.writeUTF("La combinacion ganadora es...");
+                    out.writeUTF("Send");
+                    for (int i = 0; i < sorteo.size(); i++) {
+                        int a = sorteo.get(i);
+                        out.writeInt(a);
+                        System.out.println("Enviando nº " + a + " " + soc.getInetAddress());
+                    }
                 }
-
                 soc.close();
                 System.out.println("Cliente out");
-
             }
         }
         catch(Exception e)

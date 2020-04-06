@@ -30,9 +30,7 @@ public class Main {
 
         }
         ClienteBonoloto boleto = new ClienteBonoloto(numbers);
-        boleto.conectaCliente("127.0.0.1");
-
+        int aciertos = boleto.conectaCliente("127.0.0.1");
+        System.out.println("Aciertos: " + aciertos);
     }
-
-
 }
