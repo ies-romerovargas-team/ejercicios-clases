@@ -18,12 +18,15 @@ public class ChatDirecto
 
             String msgEnviar = "Init";
             Socket soc = servidor.accept();
-            out = new DataOutputStream(soc.getOutputStream());
+            // Implementamos una clase runnable
             HiloRecibir hr = new HiloRecibir(soc);
+            // Lanzamos la tarea a través de un Thread
             Thread hilo = new Thread(hr);
             hilo.start();
+
             while(!msgEnviar.equals(""))
             {
+                out = new DataOutputStream(soc.getOutputStream());
                 msgEnviar = sc.nextLine();
                 out.writeUTF(msgEnviar);
             }
@@ -71,6 +74,43 @@ public class ChatDirecto
                 {
                     in = new DataInputStream(socket.getInputStream());
                     String mensaje = in.readUTF();
+                    System.out.println(mensaje);
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        public void stop()
+        {
+            salir = true;
+        }
+    }
+
+    private static class HiloEnviar implements Runnable
+    {
+        Socket socket;
+
+        volatile boolean salir = false;
+
+        HiloEnviar(Socket socket)
+        {
+            this.socket = socket;
+        }
+
+        public void run()
+        {
+            DataOutputStream in;
+            Scanner sc = new Scanner(System.in);
+            try
+            {
+                while(salir)
+                {
+                    in = new DataOutputStream(socket.getOutputStream());
+                    String mensaje = sc.nextLine();
+                    in.writeUTF(mensaje);
                     System.out.println(mensaje);
                 }
             }

@@ -33,7 +33,6 @@ public class ServidorMayuscula {
         Socket socket;
         private volatile int i;
 
-
         public HiloServidor(Socket socket)
         {
             this.socket = socket;
@@ -45,7 +44,6 @@ public class ServidorMayuscula {
             DataOutputStream out;
             try
             {
-                //TODO: Devolver el texto en mayúsculas
                 System.out.println("Conectado un cliente");
                 in = new DataInputStream(socket.getInputStream());
                 out = new DataOutputStream(socket.getOutputStream());
