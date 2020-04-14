@@ -23,14 +23,13 @@ public class ChatDirecto
             // Lanzamos la tarea a través de un Thread
             Thread hilo = new Thread(hr);
             hilo.start();
-
+            out = new DataOutputStream(soc.getOutputStream());
             while(!msgEnviar.equals(""))
             {
-                out = new DataOutputStream(soc.getOutputStream());
                 msgEnviar = sc.nextLine();
                 out.writeUTF(msgEnviar);
             }
-            hilo.stop();
+            hr.stop();
             soc.close();
         }
         catch(Exception e)
@@ -41,12 +40,21 @@ public class ChatDirecto
 
     static void conectar(String ip)
     {
+        DataOutputStream out;
         try
         {
+            String msgEnviar = "Init";
+            Scanner sc = new Scanner(System.in);
             Socket soc = new Socket(ip, 9011);
             HiloRecibir hr = new HiloRecibir(soc);
             Thread hilo = new Thread(hr);
             hilo.start();
+            out = new DataOutputStream(soc.getOutputStream());
+            while(!msgEnviar.equals(""))
+            {
+                msgEnviar = sc.nextLine();
+                out.writeUTF(msgEnviar);
+            }
         }
         catch(Exception e)
         {
@@ -70,47 +78,12 @@ public class ChatDirecto
             DataInputStream in;
             try
             {
-                while(salir)
+                System.out.println("Escuchando!!");
+                in = new DataInputStream(socket.getInputStream());
+                while(!salir)
                 {
-                    in = new DataInputStream(socket.getInputStream());
+                    System.out.println("while");
                     String mensaje = in.readUTF();
-                    System.out.println(mensaje);
-                }
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        public void stop()
-        {
-            salir = true;
-        }
-    }
-
-    private static class HiloEnviar implements Runnable
-    {
-        Socket socket;
-
-        volatile boolean salir = false;
-
-        HiloEnviar(Socket socket)
-        {
-            this.socket = socket;
-        }
-
-        public void run()
-        {
-            DataOutputStream in;
-            Scanner sc = new Scanner(System.in);
-            try
-            {
-                while(salir)
-                {
-                    in = new DataOutputStream(socket.getOutputStream());
-                    String mensaje = sc.nextLine();
-                    in.writeUTF(mensaje);
                     System.out.println(mensaje);
                 }
             }
