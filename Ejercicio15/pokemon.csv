@@ -57,7 +57,7 @@
 57,primeape,fighting,105,60,65,60,70,95,vital-spirit,false
 58,growlithe,fire,70,45,55,70,50,60,intimidate,false
 59,arcanine,fire,110,80,90,100,80,95,intimidate,false
-60,poliwag,water,50,40,40,40,40,90,water-absorb,false
+60,poliwag,water,50,40,40,40,40,90,water-absorb,true
 61,poliwhirl,water,65,65,65,50,50,90,water-absorb,false
 62,poliwrath,water,95,95,90,70,90,70,water-absorb,false
 63,abra,psychic,20,15,25,105,55,90,synchronize,false
