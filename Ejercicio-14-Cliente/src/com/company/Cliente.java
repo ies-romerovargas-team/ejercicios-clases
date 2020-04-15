@@ -58,7 +58,9 @@ public class Cliente
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println("Conexión finalizada");
+
             }
         }
     }
