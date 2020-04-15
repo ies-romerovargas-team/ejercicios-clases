@@ -82,7 +82,6 @@ public class ChatDirecto
                 in = new DataInputStream(socket.getInputStream());
                 while(!salir)
                 {
-                    System.out.println("while");
                     String mensaje = in.readUTF();
                     System.out.println(mensaje);
                 }

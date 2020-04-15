@@ -80,6 +80,7 @@ public class ChatDirecto
             DataInputStream in;
             try
             {
+                System.out.println("Escuchando!!");
                 in = new DataInputStream(socket.getInputStream());
                 while(!salir)
                 {
@@ -92,6 +93,7 @@ public class ChatDirecto
                 e.printStackTrace();
             }
         }
+
         public void stop()
         {
             salir = true;

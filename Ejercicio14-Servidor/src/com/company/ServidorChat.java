@@ -1,68 +1,89 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-class ServidorChat {
-    public static void main(String args[]) {
-        final int time = 75;
-        //boolean CHAT_SESSION_ALIVE = false; 
-        int port = 9999;
+public class ServidorChat
+{
+    static List<PrintWriter> listaWriters = new ArrayList<PrintWriter>();
 
+    static void lanzaServidor()
+    {
+        DataOutputStream out;
         try {
-            System.out.println("Starting chat server using the port : " + port);
-            ServerSocket srvr = new ServerSocket(port);
-            Socket skt = srvr.accept();
-            System.out.println("Server has connected with client         " + skt.getInetAddress());
-            //CHAT_SESSION_ALIVE = true;
+            ServerSocket servidor = new ServerSocket(9012);
 
-            PrintWriter out = new PrintWriter(skt.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(new InputStreamReader(skt.getInputStream()));
+            Socket soc = servidor.accept();
+            System.out.println("Conectado " + soc.toString());
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        try {
-                            if (in.ready()) {
-                                String msg = in.readLine();
-                                System.out.println("receive message: '" + msg + "'");
-                                Thread.sleep(time);
-                            }
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }
+            HiloServidor hs = new HiloServidor(soc);
+            Thread hilo = new Thread(hs);
+            hilo.start();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+
+    private static class HiloServidor implements Runnable
+    {
+        Socket socket;
+
+        volatile boolean salir = false;
+
+        HiloServidor(Socket socket)
+        {
+            this.socket = socket;
+        }
+
+        public void run()
+        {
+
+            try
+            {
+                Scanner sc = new Scanner(socket.getInputStream());
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
+                // Añadimos el PrintWriter a la lista
+                listaWriters.add(out);
+
+                // El primer mensaje es el nombre de usuario
+                String name = sc.nextLine();
+                System.out.println(name);
+                // contestamos al usuario
+                out.println("Welcome " + name);
+
+                // mensaje al grupo anunciando la conexion y nombre de usuario
+                for (int i = 0; i < listaWriters.size(); i++) {
+                    listaWriters.get(i).println("Bienvenido " + name);
+                }
+                String mensaje = "";
+                while(!mensaje.equals("/salir"))
+                {
+                    mensaje = sc.nextLine();
+                    for (int i = 0; i < listaWriters.size(); i++) {
+                        listaWriters.get(i).println(name + ": " + mensaje);
                     }
                 }
-            }).start();
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        try {
-                            Thread.sleep(time);
-                            String msg = new Scanner(System.in).nextLine();
-                            System.out.println("Sending message: '" + msg + "'");
-                            out.print(msg + "\n");
-                            out.flush();
-                        } catch (Exception e) {
-                            System.out.println(e);
-                        }
-                    }
-                }
-            }).start();
-
-            //in.close();
-            //out.close();
-            //skt.close();
-            //srvr.close();
-        } catch (Exception e) {
-            System.out.print(e);
+                out.println("Usuario " + name + " se ha ido.");
+                listaWriters.remove(out);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        public void stop()
+        {
+            salir = true;
         }
     }
 }
