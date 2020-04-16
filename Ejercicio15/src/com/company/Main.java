@@ -10,8 +10,8 @@ public class Main {
     public static void main(String[] args) {
         String opcion = "";
         // cargamos fichero CSV
-        Pokedex pokemitas = new Pokedex();
-        pokemitas = new Pokedex("pokemon.csv");
+
+        Pokedex pokemitas = new Pokedex("pokemon.csv");
 
         while (!opcion.equals("0")) {
             System.out.println("Base de datos de Pokemon's");

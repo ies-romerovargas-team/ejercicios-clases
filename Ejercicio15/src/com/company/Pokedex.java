@@ -13,7 +13,7 @@ public class Pokedex {
 
     public Pokedex(String filename)
     {
-        listPokemon = new ArrayList<>();
+        this();
         leeCSV(filename);
     }
 
