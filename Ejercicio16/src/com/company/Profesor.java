@@ -82,6 +82,6 @@ public class Profesor {
             tratamiento = "Dª. ";
         }
 
-        return tratamiento + this.nombre.toUpperCase() + "(" + this.dni + ")";
+        return tratamiento + this.nombre.toUpperCase() + " (" + this.dni + ")";
     }
 }

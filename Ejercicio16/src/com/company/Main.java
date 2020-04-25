@@ -3,6 +3,8 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Tribunal sorteo = new Tribunal("profesores1java.bin");
+        sorteo.eligeTribunal();
+        sorteo.eligeTribunalPro();
     }
 }
