@@ -90,6 +90,9 @@ public class Tribunal {
     }
 
     public void eligeTribunalPro(){
+        System.out.println();
+        System.out.println("SORTEO PRO");
+        System.out.println();
         List<Profesor> listaOrdenada = new ArrayList<>();
         List<Profesor> listaAuxiliar = new ArrayList<>();
         // Extraemos DNI de la lista
@@ -97,19 +100,20 @@ public class Tribunal {
         {
             // modificamos los dni
             String dni = listaProfesores.get(i).getDni();
-            String reordena = "";
+            StringBuilder reordena = new StringBuilder();
             // reordenamos numeracion
             for (int j = 7; j >= 0; j--) {
-                reordena = reordena + dni.charAt(j);
+                reordena.append(dni.charAt(j));
             }
-            reordena = reordena + dni.charAt(8);
-            Profesor nuevo = new Profesor(listaProfesores.get(i).getNombre(), reordena, listaProfesores.get(i).getGenero());
+            reordena.append(dni.charAt(8));
+            Profesor nuevo = new Profesor(listaProfesores.get(i).getNombre(), reordena.toString(), listaProfesores.get(i).getGenero());
+            // lista paralela con idéntica ordenación pero con los dni's correctos
             Profesor auxiliar = new Profesor(listaProfesores.get(i).getNombre(), listaProfesores.get(i).getDni(), listaProfesores.get(i).getGenero());
             // recorremos la listaOrdenada para ver donde lo metemos
             int indice = 0;
             while(indice < listaOrdenada.size())
             {
-                if(reordena.compareTo(listaOrdenada.get(indice).getDni()) == -1)
+                if(reordena.toString().compareTo(listaOrdenada.get(indice).getDni()) < 0)
                 {
                     break;
                 }
@@ -117,14 +121,13 @@ public class Tribunal {
             }
             listaOrdenada.add(indice, nuevo);
             listaAuxiliar.add(indice, auxiliar);
-
-            System.out.println("# " + indice + " " + listaAuxiliar.get(indice).toString());
         }
 
         // Imprimimos lista
         System.out.println();
         System.out.println("LISTADO PROFESORES. SORTEO");
         for (int i = 0; i < listaAuxiliar.size(); i++) {
+            System.out.print(i + 1 + ". ");
             System.out.print(listaOrdenada.get(i).getDni()+ ". ");
             System.out.println(listaAuxiliar.get(i).toString());
         }
