@@ -1,6 +1,8 @@
 package com.company;
 
 public class Pokemon {
+
+    // todo poner privates
     int id;
     String nombre;
     String tipo;

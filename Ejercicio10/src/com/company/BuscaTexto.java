@@ -59,7 +59,7 @@ public class BuscaTexto {
         // tocaremos el puntero y devolveremos false. Siempre buscará desde el principio.
         String texto = this.texto;
         int encuentra = texto.indexOf(cadena);
-        if (encuentra == 0) {
+        if (encuentra == -1) {
             return false;
         }
         this.puntero = encuentra;
@@ -71,12 +71,13 @@ public class BuscaTexto {
         // busca la cadena dentro del texto a partir de la posición actual del puntero
         // y guarda el resultado en el puntero. Si no se encuentra, no tocamos el puntero y devolvemos false.
         String texto = this.texto;
-        int encuentra = texto.indexOf(cadena, this.puntero);
-        if (encuentra == 0) {
+        int encuentra = texto.indexOf(cadena, this.puntero + 1);
+        if (encuentra == -1) {
             return false;
+        } else {
+            this.puntero = encuentra;
+            return true;
         }
-        this.puntero = encuentra;
-        return true;
     }
 
     public String extraeCadena(String delimitador1, String delimitador2)
@@ -84,6 +85,7 @@ public class BuscaTexto {
         // A partir de la posición  actual  del  puntero,  busca  el delimitador1.
         // A  partir  de  ahí  irá guardando todos los caracteres que encuentre en una cadena hasta llegar al delimitador2
         // Devolverá la cadena obtenida. Si no se encuentra alguno de los dos delimitadores, nos devuelve null
+        // todo guardar el puntero antes  de buscasiguiente para volverlo a dejar en su sitio
         String devuelve = null;
         if (buscaSiguiente(delimitador1))
         {

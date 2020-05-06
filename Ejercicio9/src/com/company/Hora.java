@@ -7,6 +7,7 @@ public class Hora {
 
     public Hora(int s) {
         if (s >= 0) segundos = s;
+        else throw new InvalidParameterException("Los segundos no pueden ser negativos");
     }
 
     public Hora(int h, int m, int s) {
@@ -25,11 +26,13 @@ public class Hora {
     }
 
     public int getSegundos() {
-        return segundos - ((getHoras() * 3600) + (getMinutos() * 60));
+        // return segundos - ((getHoras() * 3600) + (getMinutos() * 60));
+        return segundos % 60;
     }
 
     public int getMinutos() {
-        return (segundos - (3600 * getHoras())) / 60;
+        // return (segundos - (3600 * getHoras())) / 60;
+        return (segundos / 60) % 60;
     }
 
     public int getHoras() {
@@ -62,6 +65,8 @@ public class Hora {
     }
 
     // metodos
+
+    // todo comprobar que las horas no sean negativas
 
     public void sumaHoras(int horas) {
         segundos = segundos + 3600 * horas;
