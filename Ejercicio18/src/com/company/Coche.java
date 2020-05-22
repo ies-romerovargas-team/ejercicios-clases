@@ -25,7 +25,7 @@ public class Coche {
     }
 
     private boolean validamatricula(String mat) {
-        // 4 digitos, 3 letras may no vocal
+        // 4 digitos, 3 letras permitidas
         if(mat.length()!=7) return false;
         for (int i = 0; i < 4; i++) {
             if(!Character.isDigit(mat.charAt(i))) return false;
@@ -45,7 +45,7 @@ public class Coche {
         String mod = this.modelo + "           ";
         DecimalFormat df = new DecimalFormat("0.00 €");
         String formateada = "     " + df.format(this.precio);
-        return this.matricula + "   " + mar.substring(0, 12) + "\t" + mod.substring(0, 12) + "\t" + fecha + " " +  "\t" + formateada.substring(formateada.length()-12,formateada.length());
+        return this.matricula + "   " + mar.substring(0, 12) + "\t" + mod.substring(0, 12) + "\t" + fecha + " " +  "\t" + formateada.substring(formateada.length() - 12);
     }
 
     public double getPrecio() {

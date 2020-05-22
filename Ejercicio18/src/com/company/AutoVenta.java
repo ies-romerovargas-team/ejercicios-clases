@@ -25,7 +25,9 @@ public class AutoVenta {
             BufferedReader br = new BufferedReader(fr);
 
             texto = br.readLine();
-            if(!texto.equals("﻿Matricula;Marca;Modelo;Fecha de Matriculacion;Precio")) throw  new InvalidParameterException("Archivo no válido");
+            if(!texto.equals("Matricula;Marca;Modelo;Fecha de Matriculacion;Precio")) { 
+                throw  new InvalidParameterException("Archivo no válido");
+            }
             while(texto != null)
             {
                 texto = br.readLine();

@@ -15,7 +15,7 @@ public class Main {
             System.out.println();
             System.out.println("# Menú");
             System.out.println("");
-            System.out.println("Valor actual: " + myLenght.toString());
+            System.out.println("Valor actual: \u001B[34m" + myLenght.toString() + "\u001B[0m");
             System.out.println("");
             System.out.println("1. Actualizar longitud");
             System.out.println("2. Convertir a metros");
